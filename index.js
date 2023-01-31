@@ -79,10 +79,18 @@ async function listMajors(auth) {
     return;
   }
 
+  console.log(rows)
+
   console.log('Data:');
   rows.forEach((row) => {
-    // Print columns A and E, which correspond to indices 0 and 4.
-    console.log(`${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}, ${row[5]}, ${row[6]}, ${row[7]}, ${row[8]}, ${row[9]}, ${row[10]}`);
+
+    let todaysDate = new Date().toString().slice(0, 10)
+    let dataRowDate = new Date(row[1]).toString().slice(0, 10)
+
+    if(todaysDate === dataRowDate) {
+        console.log("Success!")
+    }
+    //createSaveWasteItem(row)
   });
 }
 
