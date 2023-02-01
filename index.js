@@ -3,21 +3,14 @@ const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
+const { createSaveWasteItem } = require('./utils/saveWasteItemBody');
 require('dotenv').config()
 
-// If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-// The file token.json stores the user's access and refresh tokens, and is
-// created automatically when the authorization flow completes for the first
-// time.
+
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 
-/**
- * Reads previously authorized credentials from the save file.
- *
- * @return {Promise<OAuth2Client|null>}
- */
 async function loadSavedCredentialsIfExist() {
   try {
     const content = await fs.readFile(TOKEN_PATH);
@@ -28,12 +21,6 @@ async function loadSavedCredentialsIfExist() {
   }
 }
 
-/**
- * Serializes credentials to a file comptible with GoogleAUth.fromJSON.
- *
- * @param {OAuth2Client} client
- * @return {Promise<void>}
- */
 async function saveCredentials(client) {
   const content = await fs.readFile(CREDENTIALS_PATH);
   const keys = JSON.parse(content);
@@ -47,10 +34,6 @@ async function saveCredentials(client) {
   await fs.writeFile(TOKEN_PATH, payload);
 }
 
-/**
- * Load or request or authorization to call APIs.
- *
- */
 async function authorize() {
   let client = await loadSavedCredentialsIfExist();
   if (client) {
@@ -66,7 +49,7 @@ async function authorize() {
   return client;
 }
 
-async function listMajors(auth) {
+async function getWasteData(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SSID,
@@ -79,9 +62,6 @@ async function listMajors(auth) {
     return;
   }
 
-  console.log(rows)
-
-  console.log('Data:');
   rows.forEach((row) => {
 
     let todaysDate = new Date().toString().slice(0, 10)
@@ -89,9 +69,10 @@ async function listMajors(auth) {
 
     if(todaysDate === dataRowDate) {
         console.log("Success!")
+        createSaveWasteItem(row)
     }
-    //createSaveWasteItem(row)
+    
   });
 }
 
-authorize().then(listMajors).catch(console.error);
+authorize().then(getWasteData).catch(console.error);
