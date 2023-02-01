@@ -48,3 +48,6 @@ function createSaveWasteItem(dataItem) {
 
     return body
 }
+
+module.exports = { createSaveWasteItem };
+
