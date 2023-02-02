@@ -3,7 +3,7 @@ const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
-const { createSaveWasteItem } = require('./utils/saveWasteItemBody');
+const { createSaveWasteItem } = require('./utils/createSaveWasteItem');
 require('dotenv').config()
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -68,8 +68,8 @@ async function getWasteData(auth) {
     let dataRowDate = new Date(row[1]).toString().slice(0, 10)
 
     if(todaysDate === dataRowDate) {
-        console.log("Success!")
-        createSaveWasteItem(row)
+        console.log(row[3])
+        console.log(row[4  ])
     }
     
   });
