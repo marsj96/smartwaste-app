@@ -14,43 +14,43 @@ function createSaveWasteItem(dataItem) {
             "destinationName": "Sample destination 1"
         },
         "projectTransport": {
-            "totalDistanceKms": dataItem[10],
-            "totalDistanceMiles": Math.round(dataItem[10]*0.66),
+            "totalDistanceKms": Number(dataItem[10]),
+            "totalDistanceMiles": (Math.round((dataItem[10]*0.62137119)*100))/100,
             "modeOfTransport": {
                 "modeName": dataItem[12],
-                "modeID": dataItem[13]
+                "modeID": Number(dataItem[13])
             },
             "vehicleType": {
                 "vehicleTypeName": dataItem[15],
-                "vehicleTypeID": dataItem[16]
+                "vehicleTypeID": Number(dataItem[16])
             },
             "fuelType": {
                 "fuelTypeName": dataItem[17],
-                "fuelTypeID": dataItem[18]
+                "fuelTypeID": dataItem != "" ? Number(dataItem[18]) : ""
             },
-            "fuelAmountInLitre": dataItem[19]
+            "fuelAmountInLitre": Number(dataItem[19])
         },
         "wasteTransferNote": "z",
         "containerReference": "",
         "skipSize": {
                  "description": dataItem[20], 
-                                "skipSizeID":dataItem[21],                                                      
-                                 "volume":dataItem[22]
+                                "skipSizeID": Number(dataItem[21]),                                                      
+                                 "volume": Number(dataItem[22])
                  },
-        "voidPercentage": dataItem[23],
-        "numberOfContainers": dataItem[24],
-        "overallTonnage": dataItem[25],
-        "sicCode": dataItem[26],
+        "voidPercentage": Number(dataItem[23].replace("%", "")),
+        "numberOfContainers": Number(dataItem[24]),
+        "overallTonnage": Number(dataItem[25]),
+        "sicCode": Number(dataItem[26]),
         "projectPhase": {
             "projectPhaseID": 3,
             "projectPhaseName": "Construction"
         },
         "wasteManagementRoute": {
-            "wasteManagementRouteID": dataItem[28],
+            "wasteManagementRouteID": Number(dataItem[28]),
             "wasteManagementRouteName": dataItem[27]
         },
         "wasteManagementLocation": {
-            "wasteManagementLocationID": dataItem[30],
+            "wasteManagementLocationID": Number(dataItem[30]),
             "wasteManagementLocationName": dataItem[29]
         },
         "containerSegregated": dataItem[31],
@@ -58,7 +58,7 @@ function createSaveWasteItem(dataItem) {
         "wasteTransferNoteEvidence": "",
         "wasteProducts": [
             {
-                "wasteProductID": dataItem[4],
+                "wasteProductID": Number(dataItem[4]),
                 "description": dataItem[5],
                 "ewcCode": dataItem[3],
                 "percentage": 100
