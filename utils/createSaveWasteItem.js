@@ -40,7 +40,7 @@ function createSaveWasteItem(dataItem) {
         "voidPercentage": Number(dataItem[23].replace("%", "")),
         "numberOfContainers": Number(dataItem[24]),
         "overallTonnage": Number(dataItem[25]),
-        "sicCode": Number(dataItem[26]),
+        "sicCode": dataItem[26],
         "projectPhase": {
             "projectPhaseID": 3,
             "projectPhaseName": "Construction"
