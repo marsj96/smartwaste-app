@@ -7,12 +7,12 @@ function createSaveWasteItem(dataItem) {
         "wasteID": "",
         "dateEntered": "16/1/2017",
         "wasteCarrier": {
-            "carrierID": wasteCarrier.id,
-            "carrierName": wasteCarrier.name
+            "carrierID": 169540,
+            "carrierName": "Sample waste carrier 1"
         },
         "wasteDestination": {
-            "destinationID": wasteDestination.id,
-            "destinationName": wasteDestination.name
+            "destinationID": 169541,
+            "destinationName": "Sample destination 1"
         },
         "projectTransport": {
             "totalDistanceKms": 402.34,
@@ -44,8 +44,8 @@ function createSaveWasteItem(dataItem) {
                  },
         "voidPercentage": 40,
         "numberOfContainers": 1,
-        "overallTonnage": dataItem[4],
-        "sicCode": 42.11,
+        "overallTonnage": 2,
+        "sicCode": "42.11",
         "projectPhase": {
             "projectPhaseID": 3,
             "projectPhaseName": "Construction"
@@ -59,14 +59,12 @@ function createSaveWasteItem(dataItem) {
             "wasteManagementLocationName": "Offsite"
         },
         "containerSegregated": false,
-        "createdByCompanyName": "",
-        "hazardousDescription": "notes",
-        "errorComment": "comments",
+        "createdByCompanyName": "Multevo",
         "wasteTransferNoteEvidence": "",
         "wasteProducts": [
             {
                 "wasteProductID": 1,
-                "description": `Brick (17 01 02)`,
+                "description": "Bricks  (17 01 02)",
                 "ewcCode": "17 01 02",
                 "percentage": 100
             }
