@@ -1,11 +1,10 @@
 function createSaveWasteItem(dataItem) {
 
-    let wasteCarrier = getWasteCarriers();
-    let wasteDestination = getWasteDestinations();
+    console.log(dataItem)
     
     let body = {
         "wasteID": "",
-        "dateEntered": "16/1/2017",
+        "dateEntered": dataItem[1],
         "wasteCarrier": {
             "carrierID": 169540,
             "carrierName": "Sample waste carrier 1"
@@ -15,57 +14,53 @@ function createSaveWasteItem(dataItem) {
             "destinationName": "Sample destination 1"
         },
         "projectTransport": {
-            "totalDistanceKms": 402.34,
-            "totalDistanceMiles": 250,
+            "totalDistanceKms": dataItem[10],
+            "totalDistanceMiles": Math.round(dataItem[10]*0.66),
             "modeOfTransport": {
-                "modeName": "Rail",
-                "modeID": 2
+                "modeName": dataItem[12],
+                "modeID": dataItem[13]
             },
             "vehicleType": {
-                "vehicleTypeName": "Rail - International rail",
-                "vehicleTypeID": 28
+                "vehicleTypeName": dataItem[15],
+                "vehicleTypeID": dataItem[16]
             },
             "fuelType": {
-                "fuelTypeName": "",
-                "fuelTypeID": 0
+                "fuelTypeName": dataItem[17],
+                "fuelTypeID": dataItem[18]
             },
-            "fuelAmountInLitre": 0
-        },
-        "subcontractor": {
-            "subcontractorID": 0,
-            "subcontractorName": ""
+            "fuelAmountInLitre": dataItem[19]
         },
         "wasteTransferNote": "z",
         "containerReference": "",
         "skipSize": {
-                 "description":" 120 litre wheelie bin/drum", 
-                                "skipSizeID":49,                                                      
-                                 "volume":0.12
+                 "description": dataItem[20], 
+                                "skipSizeID":dataItem[21],                                                      
+                                 "volume":dataItem[22]
                  },
-        "voidPercentage": 40,
-        "numberOfContainers": 1,
-        "overallTonnage": 2,
-        "sicCode": "42.11",
+        "voidPercentage": dataItem[23],
+        "numberOfContainers": dataItem[24],
+        "overallTonnage": dataItem[25],
+        "sicCode": dataItem[26],
         "projectPhase": {
             "projectPhaseID": 3,
             "projectPhaseName": "Construction"
         },
         "wasteManagementRoute": {
-            "wasteManagementRouteID": 3,
-            "wasteManagementRouteName": "Recovery"
+            "wasteManagementRouteID": dataItem[28],
+            "wasteManagementRouteName": dataItem[27]
         },
         "wasteManagementLocation": {
-            "wasteManagementLocationID": 2,
-            "wasteManagementLocationName": "Offsite"
+            "wasteManagementLocationID": dataItem[30],
+            "wasteManagementLocationName": dataItem[29]
         },
-        "containerSegregated": false,
+        "containerSegregated": dataItem[31],
         "createdByCompanyName": "Multevo",
         "wasteTransferNoteEvidence": "",
         "wasteProducts": [
             {
-                "wasteProductID": 1,
-                "description": "Bricks  (17 01 02)",
-                "ewcCode": "17 01 02",
+                "wasteProductID": dataItem[4],
+                "description": dataItem[5],
+                "ewcCode": dataItem[3],
                 "percentage": 100
             }
         ]

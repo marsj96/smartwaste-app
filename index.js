@@ -53,7 +53,7 @@ async function getWasteData(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SSID,
-    range: 'Sheet1!A2:O',
+    range: 'main!A2:AG',
   });
 
   const rows = res.data.values;
@@ -67,9 +67,12 @@ async function getWasteData(auth) {
     let todaysDate = new Date().toString().slice(0, 10)
     let dataRowDate = new Date(row[1]).toString().slice(0, 10)
 
+    let requestBody = createSaveWasteItem(row)
+
+    console.log(requestBody)
+
     if(todaysDate === dataRowDate) {
-        console.log(row[3])
-        console.log(row[4  ])
+        
     }
     
   });
