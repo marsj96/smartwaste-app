@@ -4,10 +4,9 @@ require('dotenv').config()
 
 let cid = process.env.CID
 let pid = process.env.PID
-let authToken = process.env.AUTHTOKEN
 let username = process.env.USERN
 
-function saveWasteItem(body) {
+function saveWasteItem(body, authToken) {
 
     let formData = new FormData()
     formData.append("wasteItem", JSON.stringify(body))
